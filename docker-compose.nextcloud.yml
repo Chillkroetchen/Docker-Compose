@@ -2,7 +2,6 @@
 services:
   mariadb:
     image: lscr.io/linuxserver/mariadb:latest
-    container_name: mariadb
     environment:
       - PUID=1000
       - PGID=1000
@@ -19,7 +18,6 @@ services:
 
   nextcloud:
     image: lscr.io/linuxserver/nextcloud:latest
-    container_name: nextcloud
     environment:
       - PUID=1000
       - PGID=1000
