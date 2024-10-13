@@ -1,0 +1,43 @@
+version: "2"
+
+services:
+  # Service definition for BookStack
+  bookstack:
+    image: lscr.io/linuxserver/bookstack:latest # The Docker image for BookStack
+    environment: # Environment variables for the BookStack service
+      - PUID=1000 # User ID for the process
+      - PGID=1000 # Group ID for the process
+      - DB_HOST=bookstack_db # Hostname of the database service
+      - DB_PORT=3306 # Port for the database service
+      - DB_USER=bookstack # Database user
+      - DB_PASS=bookstack # Database password
+      - DB_DATABASE=bookstack # Database name
+      - APP_DEFAULT_DARK_MODE=true # Enable dark mode by default
+    volumes:
+      - /srv/bookstack/config:/config # Mount the volume for BookStack configuration
+    ports:
+      - 6875:80 # Map port 6875 on the host to port 80 in the container
+    restart: unless-stopped # Restart policy
+    depends_on:
+      - bookstack_db # This service depends on the bookstack_db service
+    networks:
+      - bookstack-network # Connect to the bookstack-network
+
+  # Service definition for the database (MariaDB)
+  bookstack_db:
+    image: lscr.io/linuxserver/mariadb:latest # The Docker image for MariaDB
+    environment: # Environment variables for the MariaDB service
+      - MYSQL_ROOT_PASSWORD=bookstack # Root password for MariaDB
+      - MYSQL_DATABASE=bookstack # Database name
+      - MYSQL_USER=bookstack # Database user
+      - MYSQL_PASSWORD=bookstack # Database password
+    volumes:
+      - /srv/bookstack/data:/var/lib/mysql # Mount the volume for MariaDB data
+    restart: unless-stopped # Restart policy
+    networks:
+      - bookstack-network # Connect to the bookstack-network
+
+# Define the network configuration
+networks:
+  bookstack-network: # Custom network for inter-container communication
+    driver: bridge # Use the bridge driver for the network
