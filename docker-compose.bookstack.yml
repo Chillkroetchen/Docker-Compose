@@ -4,7 +4,6 @@ services:
   # Service definition for BookStack
   bookstack:
     image: lscr.io/linuxserver/bookstack:latest # The Docker image for BookStack
-    container_name: bookstack # Name of the container
     environment: # Environment variables for the BookStack service
       - PUID=1000 # User ID for the process
       - PGID=1000 # Group ID for the process
@@ -26,7 +25,6 @@ services:
   # Service definition for the database (MariaDB)
   bookstack_db:
     image: lscr.io/linuxserver/mariadb:latest # The Docker image for MariaDB
-    container_name: bookstack_db # Name of the container
     environment: # Environment variables for the MariaDB service
       - MYSQL_ROOT_PASSWORD=your_root_password # Root password for MariaDB
       - MYSQL_DATABASE=bookstackapp # Database name
