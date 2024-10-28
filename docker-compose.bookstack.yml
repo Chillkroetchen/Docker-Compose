@@ -11,7 +11,7 @@ services:
       - DB_HOST=bookstack_db # Hostname of the database service
       - DB_PORT=3306 # Port for the database service
       - DB_USER=bookstack # Database user
-      - DB_PASS=secret # Database password
+      - DB_PASS=password # Database password
       - DB_DATABASE=bookstackapp # Database name
       - APP_DEFAULT_DARK_MODE=true # Enable dark mode by default
     volumes:
@@ -29,7 +29,7 @@ services:
       - MYSQL_ROOT_PASSWORD=your_root_password # Root password for MariaDB
       - MYSQL_DATABASE=bookstackapp # Database name
       - MYSQL_USER=bookstack # Database user
-      - MYSQL_PASSWORD=secret # Database password
+      - MYSQL_PASSWORD=password # Database password
     volumes:
       - bookstack_db_data:/var/lib/mysql # Mount the volume for MariaDB data
     restart: unless-stopped # Restart policy
