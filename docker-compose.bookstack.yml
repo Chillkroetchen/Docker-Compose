@@ -32,10 +32,13 @@ services:
       - MYSQL_PASSWORD=password # Database password
     volumes:
       - bookstack_db_data:/var/lib/mysql # Mount the volume for MariaDB data
+      - bookstack_db_config:/config
     restart: unless-stopped # Restart policy
 
 volumes:
   bookstack_config: # Volume for storing BookStack configuration
     driver: local
   bookstack_db_data: # Volume for storing MariaDB data
+    driver: local
+  bookstack_db_config:
     driver: local
