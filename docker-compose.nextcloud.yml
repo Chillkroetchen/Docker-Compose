@@ -11,7 +11,7 @@ services:
       - MYSQL_USER=nextcloud #optional
       - MYSQL_PASSWORD=nextcloud #optional
     volumes:
-      - /srv/nextcloud_database/config:/config
+      - nextcloud_db_config:/config
     ports:
       - 3306:3306
     restart: unless-stopped
@@ -23,10 +23,14 @@ services:
       - PGID=1000
       - TZ=Europe/Berlin
     volumes:
-      - /srv/nextcloud_data/config:/config
+      - nextcloud_config:/config
       - /mnt/nextcloud/userdata:/data
     ports:
-      - 443:443
+      - 442:443
     restart: unless-stopped
     depends_on:
       - mariadb
+
+volumes:
+  nextcloud_db_config:
+  nextcloud_config:
