@@ -13,3 +13,8 @@ services:
       - homarr_data:/data
     ports:
       - '7575:7575'
+
+volumes:
+  homarr_configs:
+  homarr_icons:
+  homarr_data:
