@@ -1,5 +1,4 @@
-version: "3"  # Specifies the version of the Docker Compose file format being used.
-
+---
 services:
   changedetection:  # Name of the service/container being defined.
     image: lscr.io/linuxserver/changedetection.io:latest  # Docker image to use for this service.
@@ -8,7 +7,10 @@ services:
       - PGID=1000  # Group ID for the process inside the container.
       - TZ=Europe/Berlin  # Timezone setting for the container.
     volumes:
-      - /srv/changedetection/config:/config  # Mounts a host directory to a directory inside the container.
+      - changedetection_config:/config  # Mounts a host directory to a directory inside the container.
     ports:
       - 5000:5000  # Maps port 5000 from the host to port 5000 in the container.
     restart: unless-stopped  # Defines the restart policy for the container.
+
+volumes:
+  changedetection_config:
