@@ -9,8 +9,8 @@ services:
       - APP_URL=http://192.168.2.137:6875 # URL for accessing BookStack
       - DB_HOST=bookstack_db # Hostname of the database service
       - DB_PORT=3306 # Port for the database service
-      - DB_USER=bookstack # Database user
-      - DB_PASS=password # Database password
+      - DB_USERNAME=bookstack # Database user
+      - DB_PASSWORD=password # Database password
       - DB_DATABASE=bookstackapp # Database name
       - APP_DEFAULT_DARK_MODE=true # Enable dark mode by default
     volumes:
@@ -29,6 +29,8 @@ services:
       - MYSQL_DATABASE=bookstackapp # Database name
       - MYSQL_USER=bookstack # Database user
       - MYSQL_PASSWORD=password # Database password
+      - PUID=1000 # User ID for the process
+      - PGID=1000 # Group ID for the process
     volumes:
       - bookstack_db_data:/var/lib/mysql # Mount the volume for MariaDB data
       - bookstack_db_config:/config
